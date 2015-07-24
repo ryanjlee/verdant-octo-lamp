@@ -1,0 +1,46 @@
+.button {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  margin: 5px;
+  color: #4b4b4b;
+  background: -webkit-linear-gradient(#DDD, #999);
+  background: linear-gradient(#DDD, #999);
+  border: 0 none;
+  border-radius: 7px;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 0px 6px 0px #000;
+  -moz-box-shadow: 0px 0px 6px 0px #000;
+  box-shadow: 0px 0px 6px 0px #000;
+}
+
+.star:before {
+  content: "\2605";
+  margin-right: 7px;
+  color: gray;
+}
+
+.star:after {
+  content: "\2605";
+  margin-left: 7px;
+  color: gray;
+}
+
+.buttonBackground {
+  background-color: #DDD;
+  margin: 1.5px;
+  float: left;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: thin;
+  border-color: white;
+}
+
+.buttonBackground2 {
+  background-color: #494949;
+  margin: 20px;
+  float: left;
+  border-radius: 12px;
+}

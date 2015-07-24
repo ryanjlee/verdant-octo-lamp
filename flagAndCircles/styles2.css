@@ -1,0 +1,23 @@
+.circle {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: green;
+	color: green;
+	position: absolute;
+}
+
+#c1 {
+	top: 10px;
+	left: 10px;
+}
+
+#c2 {
+	top: 30px;
+	left: 10px;
+}
+
+#c3 {
+	top: 30px;
+	left: 30px;
+}
