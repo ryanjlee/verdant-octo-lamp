@@ -1,0 +1,39 @@
+.flag {
+  height: 200px;
+  width: 380px;
+}
+
+.topLeft {
+  height: 107.69px;
+  width: 152px;
+  position: absolute;
+  background: #3C3B6E;
+}
+
+.topLeft div {
+  height: 10.77px;
+}
+
+.in {
+  padding: 0 12.67px;
+}
+
+.star {
+  font-size: 12.3px;
+  color: #fff;
+  display: inline-block;
+  width: 25.33px;
+  text-align: center;
+}
+
+.stripe {
+  height: 15.38px;
+}
+
+.red {
+  background: #B22234;
+}
+
+.white {
+  background: #fff;
+}
