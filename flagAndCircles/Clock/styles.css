@@ -1,0 +1,30 @@
+.clock {
+  width: 200px;
+  height: 75px;
+  background: #000;
+  border: 5px solid #ABABA9;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -37.5px 0 0 -100px;
+}
+
+.time {
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+}
+
+.time div {
+  display: inline-block;
+  font-size: 50px;
+  color: #21FEFD;
+}
+
+.hour,
+.minutes {
+  width: 50px;
+  text-align: right;
+}
