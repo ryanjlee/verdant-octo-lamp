@@ -1,0 +1,23 @@
+div {
+  font: 12px/24px courier;
+  text-align: center;
+  color: #fff;
+  padding: 200px 0px;
+  background: gray;
+  box-sizing: border-box;
+}
+.left {
+  position: absolute;
+  left: 0px;
+  width: 180px;
+}
+
+.middle {
+  margin: 0px 200px 0px 180px;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 200px;
+}
