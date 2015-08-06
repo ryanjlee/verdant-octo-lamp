@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+.dropdown {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.dropdown a {
+  display: block;
+  width: 200px;
+  padding: 10px 10px;
+  font: 18px arial;
+  text-decoration: none;
+}
+
+.primary > a {
+  color: #fff;
+  background: #2980B9;
+}
+
+li > a {
+  color: #6e6e6e;
+  background: #eee;
+}
+
+.hide {
+  display: none;
+}
