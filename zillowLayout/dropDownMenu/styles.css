@@ -6,17 +6,20 @@
   position: absolute;
 }
 
-.dropdown {
+ul {
   list-style-type: none;
   padding-left: 0px;
+  margin: 0px;
 }
 
-.dropdown a {
+.primary a {
   display: block;
   width: 200px;
+  height: 40px;
   padding: 10px 10px;
   font: 18px arial;
   text-decoration: none;
+  box-shadow: 1px 1px 0 #FFFFFF inset, -1px -1px 0 #D4D4D4 inset;
 }
 
 .primary > a {
@@ -24,11 +27,37 @@
   background: #2980B9;
 }
 
-li > a {
+.primary > li a {
   color: #6e6e6e;
   background: #eee;
 }
 
-.hide {
+.secondary {
+  height: 0px;
+}
+
+.secondary li {
+  position: relative;
+  left: 200px;
+  top: -40px;
+}
+
+.primary li {
   display: none;
+}
+
+.primary:hover > a {
+  background: #2B91D4;
+}
+
+.primary li:hover > a {
+  background: #F5F5F5;
+}
+
+.primary:hover > li {
+  display: block;
+}
+
+.primary > li:hover li {
+  display: block;
 }

@@ -2,80 +2,62 @@
 <head>
   <title></title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <script type="text/javascript">
-    window.onload = function() {
-      var main = document.getElementsByClassName('primary')[0];
-
-      var toggle = function(parent) {
-        var children = parent.children;
-        for (var i = 1; i < children.length; i++) {
-          console.log()
-          children[i].classList.toggle('hide');
-        }
-      }
-
-      main.addEventListener('mouseover',function(){toggle(this)});
-      main.addEventListener('mouseout',function(){toggle(this)});
-    }
-  </script>
 </head>
 <body>
-  <ul class='primary dropdown'>
+
+  <ul class='primary'>
     <a href="#">Menu</a>
-    <li class='hide'><a href="#">Item 1</a></li>
-    <li class='hide'><a href="#">Item 2</a></li>
-    <li class='hide'><a href="#">Item 3</a></li>
-  </ul>
-<!-- 
-  <ul class='main dropdown'>
-    <a href="#">Main</a>
     <li>
       <a href="#">Item 1</a>
-      <ul class='dropdown'>
-          <li><a href="#">Subitem 1A</a></li>
-          <li><a href="#">Subitem 1B</a></li>
-          <li><a href="#">Subitem 1C</a></li>
-          <li><a href="#">Subitem 1D</a></li>
-          <li><a href="#">Subitem 1E</a></li>
+      <ul class='secondary'>
+        <li><a href="#">Subitem 1A</a></li>
+        <li><a href="#">Subitem 1B</a></li>
+        <li><a href="#">Subitem 1C</a></li>
+        <li><a href="#">Subitem 1D</a></li>
+        <li><a href="#">Subitem 1E</a></li>
       </ul>
     </li>
-    <li>Item 2
-      <ul class='dropdown'>
-        <li>Subitem 2A</li>
-        <li>Subitem 2B</li>
-        <li>Subitem 2C</li>
-        <li>Subitem 2D</li>
-        <li>Subitem 2E</li>
+    <li>
+      <a href="#">Item 2</a>
+      <ul class='secondary'>
+        <li><a href="#">Subitem 2A</a></li>
+        <li><a href="#">Subitem 2B</a></li>
+        <li><a href="#">Subitem 2C</a></li>
+        <li><a href="#">Subitem 2D</a></li>
+        <li><a href="#">Subitem 2E</a></li>
       </ul>
     </li>
-    <li>Item 3
-      <ul class='dropdown'>
-        <li>Subitem 3A</li>
-        <li>Subitem 3B</li>
-        <li>Subitem 3C</li>
-        <li>Subitem 3D</li>
-        <li>Subitem 3E</li>
+    <li>
+      <a href="#">Item 3</a>
+      <ul class='secondary'>
+        <li><a href="#">Subitem 3A</a></li>
+        <li><a href="#">Subitem 3B</a></li>
+        <li><a href="#">Subitem 3C</a></li>
+        <li><a href="#">Subitem 3D</a></li>
+        <li><a href="#">Subitem 3E</a></li>
       </ul>
     </li>
-    <li>Item 4
-      <ul class='dropdown'>
-        <li>Subitem 4A</li>
-        <li>Subitem 4B</li>
-        <li>Subitem 4C</li>
-        <li>Subitem 4D</li>
-        <li>Subitem 4E</li>
+    <li>
+      <a href="#">Item 4</a>
+      <ul class='secondary'>
+        <li><a href="#">Subitem 4A</a></li>
+        <li><a href="#">Subitem 4B</a></li>
+        <li><a href="#">Subitem 4C</a></li>
+        <li><a href="#">Subitem 4D</a></li>
+        <li><a href="#">Subitem 4E</a></li>
       </ul>
     </li>
-    <li>Item 5
-      <ul class='dropdown'>
-        <li>Subitem 5A</li>
-        <li>Subitem 5B</li>
-        <li>Subitem 5C</li>
-        <li>Subitem 5D</li>
-        <li>Subitem 5E</li>
+    <li>
+      <a href="#">Item 5</a>
+      <ul class='secondary'>
+        <li><a href="#">Subitem 5A</a></li>
+        <li><a href="#">Subitem 5B</a></li>
+        <li><a href="#">Subitem 5C</a></li>
+        <li><a href="#">Subitem 5D</a></li>
+        <li><a href="#">Subitem 5E</a></li>
       </ul>
     </li>
   </ul>
--->
+
 </body>
 </html>
