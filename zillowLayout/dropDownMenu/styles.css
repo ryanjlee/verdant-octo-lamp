@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.primary {
+  position: absolute;
+}
+
 .dropdown {
   list-style-type: none;
   padding-left: 0px;
