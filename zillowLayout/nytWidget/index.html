@@ -1,0 +1,89 @@
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+
+    $(function() {
+
+      var toggleSection = function(section) {
+        var id = section.text().toLowerCase().replace(/ /g,'');
+        $('#' + id).toggleClass('active');
+      }
+
+      $('.tab > div').click(function() {
+        $('.tab > div').each(function(i, el) {
+          var currEl = $(el);
+          if (currEl.hasClass('selected')) {
+            toggleSection(currEl);
+            currEl.toggleClass('selected');
+          }
+        });
+        toggleSection($(this));
+        $(this).toggleClass('selected');
+      });
+      
+    });
+
+  </script>
+</head>
+<body>
+
+  <div id="container">
+    <div class="tab">
+      <div class="selected"><a href="#">REAL ESTATE</a></div><!--
+      --><div><a href="#">AUTOS</a></div><!--
+      --><div><a href="#">JOBS</a></div><!--
+      --><div><a href="#">ALL CLASSIFIEDS</a></div><!--
+      --><div id="endTab"></div>
+    </div>
+    <div class="subContainer">
+      <div id="realestate" class="active">
+        <div class="main">
+          <div class="left">
+            <p>INTERNATIONAL REAL ESTATE</p>
+            <a href="#" class="story"><strong>House Hunting in ... London</strong></a><br>
+            <div id="house"></div>
+            <p class="story">Despite the slump after the 2008 housing crash, prices in London have rebounded to their highest levels ever.</p>
+            <ul>
+              <li><a href="#">Slide Show</a></li>
+            </ul>
+          </div><!--
+          --><div class="right">
+            <p>FIND PROPERTIES</p>
+            <ul>
+              <li><a href="#">Go to Real Estate Section</a></li>
+              <li><a href="#">Search for Properties</a></li>
+              <li><a href="#">Download the Real Estate App</a></li>
+              <li><a href="#">Commercial Real Estate</a></li>
+              <li><a href="#">Video Showcase: Real Estate</a></li>
+              <li><a href="#">Post an Ad</a></li>
+            </ul>  
+          </div>
+        </div>
+
+        <div class="listing">
+          <div class="left">
+            <div id="bigPic"></div>
+          </div><!--
+          --><div class="right">
+            <a href="#">NoMads newest condos</a><br>
+            <a href="#">2 BRs starting $2.050 M</a><br>
+            <a href="#">3 BRs starting $2.9 M</a>
+            <div id="smallPic"></div>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <a href="#">Place a Classified Ad <small>>></small></a>
+        </div>
+      </div>
+      <div id="autos"></div>
+      <div id="jobs"></div>
+      <div id="allclassifieds"></div>
+    </div>
+  </div>
+
+</body>
+</html>
