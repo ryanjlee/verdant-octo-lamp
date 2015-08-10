@@ -1,3 +1,6 @@
+// Provided a binary array with N elements, flip a continuous sequence of elements
+// once and return the max number of '1' bits possible
+
 var bitFlip = function (binaryString) {
   var binArr = binaryString.split('');
   var currScore = 0;
