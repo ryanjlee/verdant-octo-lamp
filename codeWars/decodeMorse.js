@@ -20,7 +20,43 @@
 // The Morse code table is preloaded for you as MORSE_CODE dictionary, feel free
 // to use it.
 
-decodeMorse = function(morseCode){
+var decodeBits = function(bits){
+  bits = bits.replace(/^0+|0+$/g, '');
+
+  var patterns = bits.match(/1+|0+/g).filter(function (el, i, arr) {
+    return arr.lastIndexOf(el) === i;
+  }).sort(function(a, b) {
+    return a.length - b.length;
+  });
+
+  var ones = ['1', '111']
+  var zeroes = ['0', '000', '0000000'];
+  var unit = patterns[0].length;
+
+  if (unit > 1) {
+    for (var i = 0; i < 3; i++) {
+      var newOne = '';
+      var newZero = '';
+      for (var j = 0; j < unit; j++) {
+        newOne += ones[i];
+        newZero += zeroes[i];
+      }
+      ones[i] = newOne;
+      zeroes[i] = newZero;
+    }
+  }
+
+  ones = ones.map(function(str) {
+    return new RegExp(str, 'g');
+  });
+  zeroes = zeroes.map(function(str) {
+    return new RegExp(str, 'g');
+  });
+
+  return bits.replace(zeroes[2], '   ').replace(ones[1], '-').replace(zeroes[1], ' ').replace(ones[0], '.').replace(zeroes[0], '');
+}
+
+var decodeMorse = function(morseCode){
   return morseCode.split('   ').map(function(word) {
     return word.split(' ').map(function(letter) {
       return MORSE_CODE[letter];
