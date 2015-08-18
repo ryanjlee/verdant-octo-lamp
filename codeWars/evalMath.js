@@ -19,16 +19,21 @@ var calc = function (expression) {
   };
   
   var evaluate = function(els) {
+    var end = 1;
     for (var i = 0; i < els.length; i++) {
-      if (parseFloat(els[i]) !== NaN) {
-        els[i] = parseFloat(els[i]);
-      }
       if (els[i] == '(') {
-        var result = evaluate(els.slice(i)); //todo
+        var result = evaluate(els.slice(i + 1));
+        els.splice(i, result[1] + 1, result[0]);
+        end += result[1];
+      }
+      if (els[i] == ')') {
+        end += i;
+        els.splice(i, els.length - i);
+        break;
       }
     }
 
-    for (var i = 0; i < els.length; i++) {
+    for (var i = 0; i < els.length ; i++) {
       if (els[i] === '-') {
         if (+els[i - 1]) {
           if (els[i + 1] === '-') {
@@ -56,11 +61,11 @@ var calc = function (expression) {
       var operator = ops2[els[i]];
       while (operator) {
         els.splice(i - 1, 3, operator(els[i - 1], els[i + 1]));
-        operator = ops1[els[i]];
+        operator = ops2[els[i]];
       }
     }
 
-    return els[0];
+    return [els[0], end];
   };
   
   var elements = expression.match(/\d+\.?\d*\b|[+\-*/()]/g).map(function(el){
@@ -70,25 +75,5 @@ var calc = function (expression) {
     return el;
   });
 
-
+  return evaluate(elements)[0];
 };
-
-
-
-// 123-1 -1- 1 - 1- -1 - -1
-// -1 + 1
-
-
-// 1+1
-// 1 - 1
-// 1-1
-// 1* 1
-// 1 /1
-// -123
-// 123
-// 2 /2+3 * 4.75- -6
-// 12* 123
-// 2 / (2 + 3) * 4.33 - -6
-
-// 1 - 1   1 + -1
-// 1 - -1  1 +  1
