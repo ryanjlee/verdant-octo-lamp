@@ -17,63 +17,65 @@ var calc = function (expression) {
       return num1 - num2;
     }
   };
+
+  var simplify = function(elements, ops) {
+    for (var i = 1; i < elements.length; i += 2) {
+      while (operator = ops[elements[i]]) {
+        elements.splice(i - 1, 3, operator(elements[i - 1], elements[i + 1]));
+      }
+    }
+  };
   
-  var evaluate = function(els) {
+  var evaluate = function(elements) {
+    var operator;
     var end = 1;
-    for (var i = 0; i < els.length; i++) {
-      if (els[i] == '(') {
-        var result = evaluate(els.slice(i + 1));
-        els.splice(i, result[1] + 1, result[0]);
+
+    // Evaluate parens with recursion
+    for (var i = 0; i < elements.length; i++) {
+      if (elements[i] == '(') {
+        var result = evaluate(elements.slice(i + 1));
+        elements.splice(i, result[1] + 1, result[0]);
         end += result[1];
       }
-      if (els[i] == ')') {
+      if (elements[i] == ')') {
         end += i;
-        els.splice(i, els.length - i);
+        elements.splice(i, elements.length - i);
         break;
       }
     }
 
-    for (var i = 0; i < els.length ; i++) {
-      if (els[i] === '-') {
-        if (+els[i - 1]) {
-          if (els[i + 1] === '-') {
-            els.splice(i + 1, 1);
+    // Simplify minuses and negatives
+    for (var i = 0; i < elements.length ; i++) {
+      if (elements[i] === '-') {
+        if (+elements[i - 1]) {
+          if (elements[i + 1] === '-') {
+            elements.splice(i + 1, 1);
           } else {
-            els[i + 1] *= -1;
+            elements[i + 1] *= -1;
           }
-          els[i] = '+';
+          elements[i] = '+';
         } else {
-          els[i + 1] *= -1;
-          els.splice(i, 1);
+          elements[i + 1] *= -1;
+          elements.splice(i, 1);
         }
       }
     }
 
-    for (var i = 1; i < els.length; i += 2) {
-      var operator = ops1[els[i]];
-      while (operator) {
-        els.splice(i - 1, 3, operator(els[i - 1], els[i + 1]));
-        operator = ops1[els[i]];
-      }
-    }
+    // Process multiplication and division
+    simplify(elements, ops1);
+    // Process addition and subtraction
+    simplify(elements, ops2);
 
-    for (var i = 1; i < els.length; i += 2) {
-      var operator = ops2[els[i]];
-      while (operator) {
-        els.splice(i - 1, 3, operator(els[i - 1], els[i + 1]));
-        operator = ops2[els[i]];
-      }
-    }
-
-    return [els[0], end];
+    return [elements[0], end];
   };
   
-  var elements = expression.match(/\d+\.?\d*\b|[+\-*/()]/g).map(function(el){
-    if (+el) {
-      return parseFloat(el);
-    }
+
+
+  // Convert expression into an array of strings symbols and numbers
+  var expressionArr = expression.match(/\d+\.?\d*\b|[+\-*/()]/g).map(function(el){
+    if (+el) return parseFloat(el);
     return el;
   });
 
-  return evaluate(elements)[0];
+  return evaluate(expressionArr)[0];
 };
