@@ -21,34 +21,53 @@ var calc = function (expression) {
   var evaluate = function(els) {
     for (var i = 0; i < els.length; i++) {
       if (parseFloat(els[i]) !== NaN) {
-        els[i] = parseFloat(els[i];
+        els[i] = parseFloat(els[i]);
       }
       if (els[i] == '(') {
-        var result = evaluate(els.slice(i));
-      }
-      if (ops1[els[i]]) {
-        ops1[els[i]]()
+        var result = evaluate(els.slice(i)); //todo
       }
     }
 
+    for (var i = 0; i < els.length; i++) {
+      if (els[i] === '-') {
+        if (+els[i - 1]) {
+          if (els[i + 1] === '-') {
+            els.splice(i + 1, 1);
+          } else {
+            els[i + 1] *= -1;
+          }
+          els[i] = '+';
+        } else {
+          els[i + 1] *= -1;
+          els.splice(i, 1);
+        }
+      }
+    }
 
-    return;
+    for (var i = 1; i < els.length; i += 2) {
+      var operator = ops1[els[i]];
+      while (operator) {
+        els.splice(i - 1, 3, operator(els[i - 1], els[i + 1]));
+        operator = ops1[els[i]];
+      }
+    }
+
+    for (var i = 1; i < els.length; i += 2) {
+      var operator = ops2[els[i]];
+      while (operator) {
+        els.splice(i - 1, 3, operator(els[i - 1], els[i + 1]));
+        operator = ops1[els[i]];
+      }
+    }
+
+    return els[0];
   };
   
-  var elements = expression.match(/\d+\.?\d*\b|[+\-*/()]/g);
-
-  elements.forEach(function(el){
-    if (parseFloat(el[i]) != NaN) {
-      el[i] = parseFloat(el[i]);
+  var elements = expression.match(/\d+\.?\d*\b|[+\-*/()]/g).map(function(el){
+    if (+el) {
+      return parseFloat(el);
     }
-  });
-  elements.forEach(function(el, i, arr){
-    if (el[i] === '-') {
-      if (el[i + 1] === '-') {
-        el[i] = '+';
-        arr.splice(el[i + 1], 1);
-      }
-    }
+    return el;
   });
 
 
