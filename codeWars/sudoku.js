@@ -25,58 +25,13 @@ Should return
   [3,4,5,2,8,6,1,7,9]]
 */
 
-  // var coordinates = [];
-
-  // function checkHorizontal(x, y) {
-
-  //   return;
-  // }
-  
-  // function checkVertical(x, y) {
-  //   return;
-  // }
-  
-  // function checkBlock(x, y) {
-  //   return;
-  // }
-  // puzzle.forEach(function(v, i) {
-  //   puzzle[i].forEach(function(v, j) {
-  //     if (puzzle[i][j] == 0) coordinates.push([i, j]);
-  //   });
-  // });
-
-  // while (coordinates.length) {
-  //   coordinates.forEach(function(v, i) {
-  //     checkHorizontal(v[0], v[1]);
-  //     checkVertical(v[0], v[1]);
-  //     checkBlock(v[0], v[1]);
-  //   });
-  // }
-
-
-  // var list = [];
-
-  // puzzle.forEach(function(v, i){
-  //   list.push({});
-  //   list[i]['row ' + i] = [];
-  //   puzzle[i].forEach(function(v, j){
-  //     list[i]['row ' + i][v] = v > 0;
-  //   });
-  // });
-
-  // for (var i = 0; i < 9; i++) {
-  //   list.push({});
-  //   list[i + 9]['column ' + (i + 9)] = [];
-  //   puzzle.forEach(function(v, j){
-  //     list[i + 9]['column ' + (i + 9)][j] = puzzle[j][i] > 0;
-  //   });
-  // }
 
 function sudoku(puzzle) {
   //return the solved puzzle as a 2d array of 9 x 9 
-  
 
   var list = {row: [], column: [], block: []};
+  var coordinates = [];
+  var result = JSON.parse(JSON.stringify(puzzle));
 
   for (var i = 0; i < 9; i++) {
     list.row[i] = [];
@@ -84,6 +39,7 @@ function sudoku(puzzle) {
     for (var j = 0; j < 9; j++) {
       var rowValue = puzzle[i][j]
       if (rowValue > 0) list.row[i][rowValue] = true;
+      else coordinates.push([i, j]);
       
       var columnValue = puzzle[j][i]
       if (columnValue > 0) list.column[i][columnValue] = true;
@@ -103,4 +59,36 @@ function sudoku(puzzle) {
     }
   }
 
+  while (coordinates.length) {
+    var newCoords = [];
+    
+    for (var i = 0; i < coordinates.length; i++) {
+      var x = coordinates[i][0];
+      var y = coordinates[i][1];
+      var b = Math.floor(x / 3) * 3 + Math.floor(y / 3);
+      var answer = undefined;
+      
+      for (var val = 1; val <= 9; val++) {
+        if (!list.row[x][val] && !list.column[y][val] && !list.block[b][val]) {
+          if (!answer) {
+            answer = val;
+          } else {
+            answer = null;
+            break;
+          }
+        }
+      }
+
+      if (answer !== null) {
+        result[x][y] = answer;
+        list.row[x][answer] = list.column[y][answer] = list.block[b][answer] = true;
+      } else {
+        newCoords.push(coordinates[i]);
+      }
+    }
+
+    coordinates = newCoords;
+  }
+
+  return result;
 }
