@@ -35,51 +35,27 @@ function solve(map, miner, exit) {
   var currMap = JSON.parse(JSON.stringify(map));
   var directions = [];
 
-  function toggle(x, y) {
-    currMap[x][y] = currMap[x][y] ? false : true;
-  }
+  (function escape(x, y) {
 
-  function escape(x, y) {
-    if (x == exit.x && y == exit.y) {
-      return true;
-    }
-    if (currMap[x + 1] && currMap[x + 1][y]) {
-      toggle(x, y);
-      if (escape(x + 1, y)) {
-        directions.unshift('right');
-        return true;
+    function move(newX, newY, dir) {
+      if (currMap[newX] && currMap[newX][newY]) {
+        currMap[x][y] = currMap[x][y] ? false : true;
+        if (escape(newX, newY)) {
+          directions.unshift(dir);
+          return true;
+        }
+        currMap[x][y] = currMap[x][y] ? false : true;
       }
-      toggle(x, y);
-    }
-    if (currMap[x][y + 1]) {
-      toggle(x, y);
-      if (escape(x, y + 1)) {
-        directions.unshift('down');
-        return true;
-      }
-      toggle(x, y);
-    }
-    if (currMap[x - 1] && currMap[x - 1][y]) {
-      toggle(x, y);
-      if (escape(x - 1, y)) {
-        directions.unshift('left');
-        return true;
-      }
-      toggle(x, y);
-    }
-    if (currMap[x][y - 1]) {
-      toggle(x, y);
-      if (escape(x, y - 1)) {
-        directions.unshift('up');
-        return true;
-      }
-      toggle(x, y);
     }
 
+    if (x == exit.x && y == exit.y) return true;
+    if (move(x + 1, y, 'right')) return true;
+    if (move(x, y + 1, 'down')) return true;
+    if (move(x - 1, y, 'left')) return true;
+    if (move(x, y - 1, 'up')) return true;
     return false;
-  }
   
-  escape(miner.x, miner.y);
+  })(miner.x, miner.y);
 
   return directions;
 }
