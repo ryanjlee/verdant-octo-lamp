@@ -7,50 +7,36 @@ var spiralize = function(size) {
       spiral[i].push(1);
     }
   }
+
   var x = 0;
   var y = 1;
-  var direction = 'right';
+  var dir = 0;
   var count = 0;
+
+  function move(bool) {
+    if (bool) {
+      if (dir == 0) x++;
+      if (dir == 1) y++;
+      if (dir == 2) x--;
+      if (dir == 3) y--;
+    }
+    else {
+      dir = dir === 3 ? 0 :dir + 1;
+      count++;
+    }
+  }
 
   while (true) {
     spiral[y][x] = 0;
-    complete = true;
     count = 0;
 
-    if (direction === 'right') {
-      if (spiral[y][x + 2] !== undefined && spiral[y][x + 1] !== 0 && spiral[y][x + 2] !== 0) x++;
-      else {
-        direction = 'down';
-        count++;
-      }
-    }
-    if (direction === 'down') {
-      if (spiral[y + 2] !== undefined && spiral[y + 1][x] !== 0 && spiral[y + 2][x] !== 0) y++;
-      else {
-        direction = 'left';
-        count++;
-      }
-    }
-    if (direction === 'left') {
-      if (spiral[y][x - 2] !== undefined && spiral[y][x - 1] !== 0 && spiral[y][x - 2] !== 0) x--;
-      else {
-        direction = 'up';
-        count++;
-      }
-    }
-    if (direction === 'up') {
-      if (spiral[y - 2] !== undefined && spiral[y - 2][x] !== 0 && spiral[y - 2][x] !== 0) y--;
-      else {
-        direction = 'right';
-        count++;
-      }
-    }
-    if (count > 1) {
-      return spiral;
-    }
+    if (dir === 0) move(spiral[y][x + 2] !== undefined && spiral[y][x + 1] !== 0 && spiral[y][x + 2] !== 0);
+    if (dir === 1) move(spiral[y + 2]    !== undefined && spiral[y + 1][x] !== 0 && spiral[y + 2][x] !== 0);
+    if (dir === 2) move(spiral[y][x - 2] !== undefined && spiral[y][x - 1] !== 0 && spiral[y][x - 2] !== 0);
+    if (dir === 3) move(spiral[y - 2]    !== undefined && spiral[y - 2][x] !== 0 && spiral[y - 2][x] !== 0);
+    if (count > 1) return spiral;
   }
 }
-
 
 // 1       00000
 // 2       ....0
