@@ -1,0 +1,26 @@
+/* Stub CSS file for your tinychat app! */
+
+body {
+    background-color: #F2F2F2;
+    color: #333;
+}
+
+p {
+	margin: 0;
+}
+
+.header {
+	background-color: #1395BA;
+	color: white;
+}
+
+.message {
+	background-color: #FFF;
+	border: 1px solid #E4E4E4;
+	margin: 5px auto;
+	padding: 10px;
+}
+
+.author {
+	font-weight: bold;
+}

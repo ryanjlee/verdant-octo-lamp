@@ -1,0 +1,14 @@
+The server needs store the data like the data in /fixtures/fakedata.json.
+It will also only need to handle 2 kinds or requests.
+
+1st Request
+Method: GET
+Route: '/fixtures/fakedata.json'
+Return all json data from database. In case of error, return error message.
+
+2nd Request
+Method: POST
+Route: '/fixtures/fakedata.json'
+Server will receive json data of a new message that's to be pushed into the array of messages in the database;
+ID is currently determined from the front-end, but later on it should be determined by the server for a more accurate count.
+Once complete, return all json data from database, and in the case of an error, return a error message.
